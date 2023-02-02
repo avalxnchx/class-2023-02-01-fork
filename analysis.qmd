@@ -11,4 +11,12 @@ format: html
 library(tidyverse)
 
 x <- read_rds("data/ec.rds")
+x |>
+  mutate(state_name = str_replace(string = county_name, pattern =".*, ", replacement = "")) |>
+group_by(state_name) |>
+  drop_na() |>
+  mutate(state_pop2018 = sum(pop2018))
+
+
+  
 ```
